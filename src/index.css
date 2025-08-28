@@ -2,95 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Engine Design System - Professional dashboard theme with modern gradients and shadows */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core palette - Professional blue theme */
+    --background: 248 250 252%;
+    --foreground: 15 23 42%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 255 255 255%;
+    --card-foreground: 15 23 42%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 255 255 255%;
+    --popover-foreground: 15 23 42%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 239 68% 68%;
+    --primary-foreground: 255 255 255%;
+    --primary-glow: 239 84% 78%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 241 245 249%;
+    --secondary-foreground: 51 65 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 248 250 252%;
+    --muted-foreground: 100 116 139%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 239 68% 68%;
+    --accent-foreground: 255 255 255%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 255 255 255%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 226 232 240%;
+    --input: 226 232 240%;
+    --ring: 239 68% 68%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Engine-specific tokens */
+    --engine-surface: 255 255 255%;
+    --engine-surface-elevated: 255 255 255%;
+    --engine-text-primary: 15 23 42%;
+    --engine-text-secondary: 71 85 105%;
+    --engine-text-tertiary: 148 163 184%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(239 68% 68%), hsl(239 84% 78%));
+    --gradient-surface: linear-gradient(145deg, hsl(255 255 255%), hsl(248 250 252%));
+    --gradient-chart: linear-gradient(180deg, hsl(239 68% 68% / 0.8), hsl(239 68% 68% / 0.2));
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(15 23 42% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(15 23 42% / 0.1), 0 2px 4px -1px hsl(15 23 42% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(15 23 42% / 0.1), 0 4px 6px -2px hsl(15 23 42% / 0.05);
+    --shadow-glow: 0 0 20px hsl(239 68% 68% / 0.3);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar tokens */
+    --sidebar-background: 248 250 252%;
+    --sidebar-foreground: 51 65 85%;
+    --sidebar-primary: 239 68% 68%;
+    --sidebar-primary-foreground: 255 255 255%;
+    --sidebar-accent: 241 245 249%;
+    --sidebar-accent-foreground: 51 65 85%;
+    --sidebar-border: 226 232 240%;
+    --sidebar-ring: 239 68% 68%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark theme - Deep blue with purple accents */
+    --background: 15 23 42%;
+    --foreground: 248 250 252%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 30 41 59%;
+    --card-foreground: 248 250 252%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 30 41 59%;
+    --popover-foreground: 248 250 252%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 239 84% 78%;
+    --primary-foreground: 15 23 42%;
+    --primary-glow: 239 90% 85%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 51 65 85%;
+    --secondary-foreground: 248 250 252%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 30 41 59%;
+    --muted-foreground: 148 163 184%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 239 84% 78%;
+    --accent-foreground: 15 23 42%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 248 250 252%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 51 65 85%;
+    --input: 51 65 85%;
+    --ring: 239 84% 78%;
+
+    /* Engine dark tokens */
+    --engine-surface: 30 41 59%;
+    --engine-surface-elevated: 51 65 85%;
+    --engine-text-primary: 248 250 252%;
+    --engine-text-secondary: 203 213 225%;
+    --engine-text-tertiary: 148 163 184%;
+
+    /* Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(239 84% 78%), hsl(239 90% 85%));
+    --gradient-surface: linear-gradient(145deg, hsl(30 41 59%), hsl(15 23 42%));
+    --gradient-chart: linear-gradient(180deg, hsl(239 84% 78% / 0.8), hsl(239 84% 78% / 0.2));
+
+    /* Dark shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -2px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 20px hsl(239 84% 78% / 0.4);
+
+    /* Dark sidebar */
+    --sidebar-background: 15 23 42%;
+    --sidebar-foreground: 203 213 225%;
+    --sidebar-primary: 239 84% 78%;
+    --sidebar-primary-foreground: 15 23 42%;
+    --sidebar-accent: 30 41 59%;
+    --sidebar-accent-foreground: 203 213 225%;
+    --sidebar-border: 51 65 85%;
+    --sidebar-ring: 239 84% 78%;
   }
 }
 

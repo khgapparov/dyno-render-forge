@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -61,7 +62,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				engine: {
+					surface: 'hsl(var(--engine-surface))',
+					'surface-elevated': 'hsl(var(--engine-surface-elevated))',
+					'text-primary': 'hsl(var(--engine-text-primary))',
+					'text-secondary': 'hsl(var(--engine-text-secondary))',
+					'text-tertiary': 'hsl(var(--engine-text-tertiary))'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-surface': 'var(--gradient-surface)',
+				'gradient-chart': 'var(--gradient-chart)'
+			},
+			boxShadow: {
+				'engine-sm': 'var(--shadow-sm)',
+				'engine-md': 'var(--shadow-md)',
+				'engine-lg': 'var(--shadow-lg)',
+				'engine-glow': 'var(--shadow-glow)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

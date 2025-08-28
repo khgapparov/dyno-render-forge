@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "title": "Minimal Analytics View",
+    "description": "A simplified dashboard focused on key metrics",
+    "version": "1.0.0"
+  },
+  "theme": {
+    "variant": "minimal",
+    "primaryColor": "hsl(239, 68%, 68%)"
+  },
+  "layout": {
+    "type": "page",
+    "props": {
+      "title": "Analytics Dashboard",
+      "sidebar": {
+        "items": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "icon": "Home",
+            "active": true
+          },
+          {
+            "id": "metrics",
+            "label": "Metrics",
+            "icon": "BarChart3"
+          },
+          {
+            "id": "reports",
+            "label": "Reports",
+            "icon": "TrendingUp"
+          }
+        ],
+        "collapsible": true,
+        "defaultCollapsed": false
+      }
+    },
+    "children": [
+      {
+        "type": "container",
+        "props": {
+          "className": "p-8 space-y-8"
+        },
+        "children": [
+          {
+            "type": "container",
+            "props": {
+              "className": "text-center space-y-4 mb-12"
+            },
+            "children": [
+              {
+                "type": "container",
+                "props": {
+                  "className": "text-4xl font-bold text-engine-text-primary"
+                }
+              },
+              {
+                "type": "container",
+                "props": {
+                  "className": "text-lg text-engine-text-secondary"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "primary-metric",
+                "props": {
+                  "title": "Revenue",
+                  "description": "Total monthly revenue",
+                  "dataUrl": "/api/revenue",
+                  "variant": "metric",
+                  "className": "text-center"
+                }
+              },
+              {
+                "type": "card",
+                "id": "secondary-metric",
+                "props": {
+                  "title": "Users",
+                  "description": "Active user count",
+                  "dataUrl": "/api/users",
+                  "variant": "status",
+                  "className": "text-center"
+                }
+              },
+              {
+                "type": "card",
+                "id": "tertiary-metric",
+                "props": {
+                  "title": "Performance",
+                  "description": "System performance metrics",
+                  "dataUrl": "/api/analytics",
+                  "variant": "metric",
+                  "className": "text-center"
+                }
+              }
+            ]
+          },
+          {
+            "type": "chart",
+            "id": "main-chart",
+            "props": {
+              "title": "Revenue Overview",
+              "chartType": "line",
+              "dataUrl": "/api/revenue",
+              "height": 400,
+              "showLegend": false,
+              "showGrid": false,
+              "className": "max-w-4xl mx-auto"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

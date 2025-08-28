@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "Dynamic Dashboard Engine",
+    "description": "A customizable front-end engine powered by JSON metadata",
+    "version": "1.0.0"
+  },
+  "theme": {
+    "variant": "modern",
+    "primaryColor": "hsl(239, 68%, 68%)"
+  },
+  "layout": {
+    "type": "page",
+    "props": {
+      "title": "Dynamic Engine Dashboard"
+    },
+    "children": [
+      {
+        "type": "container",
+        "props": {
+          "className": "p-6 space-y-6"
+        },
+        "children": [
+          {
+            "type": "container",
+            "props": {
+              "className": "mb-8"
+            },
+            "children": [
+              {
+                "type": "container",
+                "props": {
+                  "className": "text-center space-y-2"
+                },
+                "children": [
+                  {
+                    "type": "container",
+                    "props": {
+                      "className": "text-3xl font-bold text-engine-text-primary bg-gradient-primary bg-clip-text text-transparent"
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "props": {
+                      "className": "text-engine-text-secondary max-w-2xl mx-auto"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "sales-overview",
+                "props": {
+                  "title": "Total Sales",
+                  "description": "Monthly sales performance",
+                  "dataUrl": "/api/sales",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "revenue-card",
+                "props": {
+                  "title": "Revenue",
+                  "description": "Total revenue generated",
+                  "dataUrl": "/api/revenue",
+                  "variant": "chart-summary",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "users-stats",
+                "props": {
+                  "title": "User Statistics",
+                  "description": "Active and total users",
+                  "dataUrl": "/api/users",
+                  "variant": "status",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "analytics-overview",
+                "props": {
+                  "title": "Analytics",
+                  "description": "Website analytics data",
+                  "dataUrl": "/api/analytics",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 lg:grid-cols-2 gap-6"
+            },
+            "children": [
+              {
+                "type": "chart",
+                "id": "sales-chart",
+                "props": {
+                  "title": "Sales Performance",
+                  "chartType": "bar",
+                  "dataUrl": "/api/sales",
+                  "height": 350,
+                  "showLegend": true,
+                  "showGrid": true,
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "chart",
+                "id": "revenue-trend",
+                "props": {
+                  "title": "Revenue Trend",
+                  "chartType": "line",
+                  "dataUrl": "/api/revenue",
+                  "height": 350,
+                  "showLegend": true,
+                  "showGrid": true,
+                  "className": "hover:shadow-engine-glow"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "system-status",
+                "props": {
+                  "title": "System Health",
+                  "description": "Real-time system monitoring",
+                  "variant": "default",
+                  "className": "md:col-span-2"
+                }
+              },
+              {
+                "type": "card",
+                "id": "quick-actions",
+                "props": {
+                  "title": "Quick Actions",
+                  "description": "Common administrative tasks",
+                  "variant": "default"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
