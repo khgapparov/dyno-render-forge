@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { LayoutEngine, LayoutMetadata } from './engine/LayoutEngine';
 import { useTheme } from '@/contexts/ThemeContext';
+import { ColorThemePicker } from './ColorThemePicker';
 import { Layers, Code, Settings, Play } from 'lucide-react';
 
 // Import metadata configurations
@@ -145,6 +146,11 @@ export const MetadataSelector = ({ onMetadataChange }: MetadataSelectorProps) =>
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* Color Theme Selection */}
+            <div className="mb-6">
+              <ColorThemePicker />
+            </div>
+
             {/* Metadata Selection */}
             <div className="space-y-3">
               <Label className="text-sm font-medium">Choose Layout Configuration</Label>
