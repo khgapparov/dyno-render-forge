@@ -32,32 +32,45 @@ class DataService {
     try {
       console.log(`[DataService] Fetching data from ${url}`);
       
-      // Simulate API delay for realistic experience
-      await new Promise(resolve => setTimeout(resolve, Math.random() * 500 + 200));
+      // Add authentication token if available
+      const token = localStorage.getItem('authToken');
+      const headers: HeadersInit = {};
       
-      const response = await fetch(url);
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
+      // Prepend API base URL for relative paths - use correct backend structure
+      const fullUrl = url.startsWith('http') ? url : `http://localhost:8081${url}`;
+      
+      const response = await fetch(fullUrl, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...headers
+        }
+      });
       
       if (!response.ok) {
+        // Handle authentication errors
+        if (response.status === 401) {
+          localStorage.removeItem('authToken');
+          window.location.href = '/login';
+          throw new Error('Authentication required');
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const result: ApiResponse<T> = await response.json();
-      
-      if (!result.success) {
-        throw new Error(result.error || 'API request failed');
-      }
+      const result = await response.json();
       
       // Cache the successful response
       if (useCache) {
-        this.cache.set(url, { data: result.data, timestamp: Date.now() });
+        this.cache.set(url, { data: result, timestamp: Date.now() });
       }
       
-      return result.data;
+      return result;
     } catch (error) {
       console.error(`[DataService] Error fetching from ${url}:`, error);
-      
-      // Return mock data for development
-      return this.getMockData(url);
+      throw error; // Re-throw to let components handle errors
     }
   }
 
@@ -107,6 +120,96 @@ class DataService {
         sessions: 12300,
         bounceRate: 0.23,
         avgSessionDuration: 245
+      };
+    }
+
+    // Project Management Mock Data
+    if (url.includes('/api/projects/count')) {
+      return 8;
+    }
+
+    if (url.includes('/api/projects/recent')) {
+      return [
+        { id: 1, name: 'Website Redesign', status: 'In Progress', progress: 75 },
+        { id: 2, name: 'Mobile App Development', status: 'Completed', progress: 100 },
+        { id: 3, name: 'API Integration', status: 'Planning', progress: 25 }
+      ];
+    }
+
+    if (url.includes('/api/projects/timeline')) {
+      return [
+        { month: 'Jan', projects: 2, completed: 1 },
+        { month: 'Feb', projects: 3, completed: 2 },
+        { month: 'Mar', projects: 5, completed: 3 },
+        { month: 'Apr', projects: 4, completed: 2 },
+        { month: 'May', projects: 6, completed: 4 },
+        { month: 'Jun', projects: 8, completed: 5 }
+      ];
+    }
+
+    if (url.includes('/api/project-updates/recent')) {
+      return [
+        { id: 1, project: 'Website Redesign', update: 'Completed frontend components', date: '2024-01-15' },
+        { id: 2, project: 'Mobile App', update: 'Fixed authentication bug', date: '2024-01-14' },
+        { id: 3, project: 'API Integration', update: 'Started backend development', date: '2024-01-13' }
+      ];
+    }
+
+    if (url.includes('/api/gallery/count')) {
+      return 23;
+    }
+
+    if (url.includes('/api/chat/unread')) {
+      return 3;
+    }
+
+    if (url.includes('/api/activity/recent')) {
+      return [
+        { action: 'Project Created', user: 'John Doe', time: '2 hours ago' },
+        { action: 'File Uploaded', user: 'Jane Smith', time: '4 hours ago' },
+        { action: 'Comment Added', user: 'Mike Johnson', time: '6 hours ago' }
+      ];
+    }
+
+    if (url.includes('/api/projects')) {
+      return [
+        { id: 1, name: 'Website Redesign', description: 'Complete website overhaul', status: 'In Progress', startDate: '2024-01-01', endDate: '2024-03-01' },
+        { id: 2, name: 'Mobile App Development', description: 'iOS and Android app', status: 'Completed', startDate: '2023-11-01', endDate: '2024-01-15' },
+        { id: 3, name: 'API Integration', description: 'Third-party API integration', status: 'Planning', startDate: '2024-02-01', endDate: '2024-04-01' }
+      ];
+    }
+
+    if (url.includes('/api/project-updates')) {
+      return [
+        { id: 1, projectId: 1, title: 'Frontend Completed', content: 'All frontend components are now ready', date: '2024-01-15' },
+        { id: 2, projectId: 2, title: 'App Published', content: 'Mobile app published to app stores', date: '2024-01-10' },
+        { id: 3, projectId: 3, title: 'Planning Phase', content: 'Initial planning and requirements gathering', date: '2024-01-05' }
+      ];
+    }
+
+    if (url.includes('/api/gallery')) {
+      return [
+        { id: 1, name: 'Dashboard Design', type: 'image', projectId: 1, url: '/placeholder.svg' },
+        { id: 2, name: 'App Screenshot', type: 'image', projectId: 2, url: '/placeholder.svg' },
+        { id: 3, name: 'API Documentation', type: 'document', projectId: 3, url: '/placeholder.svg' }
+      ];
+    }
+
+    if (url.includes('/api/chat')) {
+      return [
+        { id: 1, user: 'John Doe', message: 'Has anyone reviewed the latest design?', time: '10:30 AM' },
+        { id: 2, user: 'Jane Smith', message: 'Yes, looks good to me!', time: '10:32 AM' },
+        { id: 3, user: 'Mike Johnson', message: 'I\'ll check it this afternoon', time: '10:35 AM' }
+      ];
+    }
+
+    if (url.includes('/api/auth/me')) {
+      return {
+        id: 1,
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        role: 'Project Manager',
+        avatar: '/placeholder.svg'
       };
     }
     

@@ -12,6 +12,8 @@ import { Layers, Code, Settings, Play } from 'lucide-react';
 // Import metadata configurations
 import defaultMetadata from '@/data/metadata.json';
 import alternativeMetadata from '@/data/alternativeMetadata.json';
+import projectManagementMetadata from '@/data/project-management-metadata.json';
+import backendConnectedMetadata from '@/data/backend-connected-metadata.json';
 
 interface MetadataSelectorProps {
   onMetadataChange?: (metadata: LayoutMetadata) => void;
@@ -39,6 +41,18 @@ export const MetadataSelector = ({ onMetadataChange }: MetadataSelectorProps) =>
       name: 'Minimal Analytics', 
       description: 'Simplified view focused on key analytics',
       metadata: alternativeMetadata as LayoutMetadata 
+    },
+    { 
+      id: 'project-management', 
+      name: 'Project Management', 
+      description: 'Complete project management system with CRUD operations',
+      metadata: projectManagementMetadata as LayoutMetadata 
+    },
+    { 
+      id: 'backend-connected', 
+      name: 'Backend Connected', 
+      description: 'Real-time project dashboard with backend API integration',
+      metadata: backendConnectedMetadata as LayoutMetadata 
     }
   ];
 
@@ -58,8 +72,8 @@ export const MetadataSelector = ({ onMetadataChange }: MetadataSelectorProps) =>
   if (isPreviewMode) {
     return (
       <div className="min-h-screen bg-background">
-        {/* Preview controls */}
-        <div className="fixed top-4 right-4 z-50 bg-engine-surface border border-border rounded-lg p-4 shadow-engine-lg">
+        {/* Preview controls - Professional floating control panel */}
+        <div className="fixed top-4 right-4 z-[9999] bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-lg p-4 shadow-lg">
           <div className="flex items-center space-x-3">
             <Button
               variant="outline"
@@ -84,11 +98,13 @@ export const MetadataSelector = ({ onMetadataChange }: MetadataSelectorProps) =>
           </div>
         </div>
 
-        {/* Full layout preview */}
-        <LayoutEngine 
-          metadata={selectedMetadata}
-          onError={(error) => console.error('[Preview] Layout error:', error)}
-        />
+        {/* Full layout preview with lower z-index to ensure controls stay on top */}
+        <div className="relative z-10">
+          <LayoutEngine 
+            metadata={selectedMetadata}
+            onError={(error) => console.error('[Preview] Layout error:', error)}
+          />
+        </div>
       </div>
     );
   }

@@ -1,0 +1,435 @@
+{
+  "metadata": {
+    "title": "Project Management Dashboard",
+    "description": "Complete project management application with CRUD operations, gallery, and chat features",
+    "version": "1.0.0"
+  },
+  "theme": {
+    "variant": "modern",
+    "primaryColor": "hsl(220, 70%, 50%)"
+  },
+  "layout": {
+    "type": "page",
+    "props": {
+      "title": "Project Management System",
+      "navbar": {
+        "logo": "/logo.svg",
+        "title": "Project Manager",
+        "navigation": [
+          { "label": "Dashboard", "href": "/dashboard" },
+          { "label": "Projects", "href": "/projects" },
+          { "label": "Updates", "href": "/updates" },
+          { "label": "Gallery", "href": "/gallery" },
+          { "label": "Chat", "href": "/chat" }
+        ],
+        "userMenu": true
+      },
+      "sidebar": {
+        "items": [
+          { "label": "Overview", "href": "/dashboard", "icon": "LayoutDashboard" },
+          { "label": "My Projects", "href": "/projects", "icon": "Briefcase" },
+          { "label": "Timeline", "href": "/updates", "icon": "Calendar" },
+          { "label": "Media", "href": "/gallery", "icon": "Image" },
+          { "label": "Messages", "href": "/chat", "icon": "MessageSquare" },
+          { "type": "separator" },
+          { "label": "Profile", "href": "/profile", "icon": "User" },
+          { "label": "Settings", "href": "/settings", "icon": "Settings" }
+        ]
+      }
+    },
+    "children": [
+      {
+        "type": "container",
+        "props": {
+          "className": "p-6 space-y-6"
+        },
+        "children": [
+          {
+            "type": "container",
+            "props": {
+              "className": "mb-8"
+            },
+            "children": [
+              {
+                "type": "container",
+                "props": {
+                  "className": "text-center space-y-2"
+                },
+                "children": [
+                  {
+                    "type": "container",
+                    "props": {
+                      "className": "text-3xl font-bold text-engine-text-primary"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "props": {
+                          "content": "Project Management Dashboard"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "container",
+                    "props": {
+                      "className": "text-engine-text-secondary max-w-2xl mx-auto"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "props": {
+                          "content": "Manage your projects, track updates, share media, and collaborate with your team"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "total-projects",
+                "props": {
+                  "title": "Total Projects",
+                  "description": "Active projects count",
+                  "dataUrl": "/api/projects/count",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "active-updates",
+                "props": {
+                  "title": "Recent Updates",
+                  "description": "Latest project updates",
+                  "dataUrl": "/api/project-updates/recent",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "gallery-items",
+                "props": {
+                  "title": "Gallery Items",
+                  "description": "Total media files",
+                  "dataUrl": "/api/gallery/count",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "card",
+                "id": "unread-messages",
+                "props": {
+                  "title": "Unread Messages",
+                  "description": "New chat messages",
+                  "dataUrl": "/api/chat/unread",
+                  "variant": "metric",
+                  "className": "hover:shadow-engine-glow"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 lg:grid-cols-2 gap-6"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "projects-list",
+                "props": {
+                  "title": "Recent Projects",
+                  "description": "Your most recent projects",
+                  "dataUrl": "/api/projects/recent",
+                  "variant": "default",
+                  "className": "hover:shadow-engine-glow"
+                }
+              },
+              {
+                "type": "chart",
+                "id": "project-timeline",
+                "props": {
+                  "title": "Project Timeline",
+                  "chartType": "line",
+                  "dataUrl": "/api/projects/timeline",
+                  "height": 300,
+                  "showLegend": true,
+                  "showGrid": true,
+                  "className": "hover:shadow-engine-glow"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "props": {
+              "className": "grid grid-cols-1 md:grid-cols-2 gap-6 mt-8"
+            },
+            "children": [
+              {
+                "type": "card",
+                "id": "quick-actions",
+                "props": {
+                  "title": "Quick Actions",
+                  "description": "Common project management tasks",
+                  "variant": "default",
+                  "className": "md:col-span-1"
+                }
+              },
+              {
+                "type": "card",
+                "id": "recent-activity",
+                "props": {
+                  "title": "Recent Activity",
+                  "description": "Latest system activities",
+                  "dataUrl": "/api/activity/recent",
+                  "variant": "default",
+                  "className": "md:col-span-1"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pages": {
+    "dashboard": {
+      "path": "/dashboard",
+      "title": "Dashboard Overview",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Welcome to Dashboard",
+                "description": "Your project management hub"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "path": "/projects",
+      "title": "Project Management",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Projects List",
+                "description": "Manage all your projects",
+                "dataUrl": "/api/projects"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "projectDetail": {
+      "path": "/projects/{id}",
+      "title": "Project Details",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Project Information",
+                "dataUrl": "/api/projects/{id}"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "updates": {
+      "path": "/updates",
+      "title": "Project Updates",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "All Project Updates",
+                "description": "Timeline of all project activities",
+                "dataUrl": "/api/project-updates"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gallery": {
+      "path": "/gallery",
+      "title": "Media Gallery",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Project Gallery",
+                "description": "All media files and attachments",
+                "dataUrl": "/api/gallery"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "chat": {
+      "path": "/chat",
+      "title": "Team Chat",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Team Collaboration",
+                "description": "Real-time chat with your team",
+                "dataUrl": "/api/chat"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "login": {
+      "path": "/login",
+      "title": "User Login",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "min-h-screen flex items-center justify-center" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Sign In",
+                "description": "Access your project management account",
+                "className": "w-96"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "register": {
+      "path": "/register",
+      "title": "User Registration",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "min-h-screen flex items-center justify-center" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Create Account",
+                "description": "Join the project management platform",
+                "className": "w-96"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "profile": {
+      "path": "/profile",
+      "title": "User Profile",
+      "components": [
+        {
+          "type": "container",
+          "props": { "className": "p-6" },
+          "children": [
+            {
+              "type": "card",
+              "props": {
+                "title": "Profile Settings",
+                "description": "Manage your account information",
+                "dataUrl": "/api/auth/me"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "apiEndpoints": {
+    "auth": {
+      "login": "/api/auth/login",
+      "register": "/api/auth/register",
+      "logout": "/api/auth/logout",
+      "me": "/api/auth/me",
+      "profile": "/api/auth/profile"
+    },
+    "projects": {
+      "create": "/api/projects",
+      "list": "/api/projects",
+      "get": "/api/projects/{id}",
+      "update": "/api/projects/{id}",
+      "delete": "/api/projects/{id}",
+      "userProjects": "/api/projects/user/{userId}",
+      "count": "/api/projects/count",
+      "recent": "/api/projects/recent",
+      "timeline": "/api/projects/timeline"
+    },
+    "projectUpdates": {
+      "create": "/api/project-updates",
+      "list": "/api/project-updates",
+      "get": "/api/project-updates/{id}",
+      "update": "/api/project-updates/{id}",
+      "delete": "/api/project-updates/{id}",
+      "projectUpdates": "/api/project-updates/project/{projectId}",
+      "recent": "/api/project-updates/recent"
+    },
+    "gallery": {
+      "upload": "/api/gallery",
+      "list": "/api/gallery",
+      "get": "/api/gallery/{id}",
+      "update": "/api/gallery/{id}",
+      "delete": "/api/gallery/{id}",
+      "projectGallery": "/api/gallery/project/{projectId}",
+      "count": "/api/gallery/count"
+    },
+    "chat": {
+      "send": "/api/chat",
+      "list": "/api/chat",
+      "get": "/api/chat/{id}",
+      "update": "/api/chat/{id}",
+      "delete": "/api/chat/{id}",
+      "projectChat": "/api/chat/project/{projectId}",
+      "unread": "/api/chat/unread"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "layout": {
+    "type": "page",
+    "className": "min-h-screen bg-background",
+    "props": {
+      "navbar": {
+        "type": "navbar",
+        "props": {
+          "title": "Project Management Dashboard",
+          "logo": "/placeholder.svg",
+          "userMenu": true,
+          "themeToggle": true
+        }
+      },
+      "sidebar": {
+        "type": "sidebar",
+        "props": {
+          "items": [
+            { "label": "Dashboard", "icon": "Home", "href": "/" },
+            { "label": "Projects", "icon": "Folder", "href": "/projects" },
+            { "label": "Updates", "icon": "ClipboardList", "href": "/updates" },
+            { "label": "Gallery", "icon": "Image", "href": "/gallery" },
+            { "label": "Messages", "icon": "MessageCircle", "href": "/chat" }
+          ]
+        }
+      },
+      "content": {
+        "type": "container",
+        "className": "p-6 space-y-6",
+        "children": [
+          {
+            "type": "container",
+            "className": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+            "children": [
+              {
+                "type": "card",
+                "props": {
+                  "title": "Total Projects",
+                  "value": "2",
+                  "description": "Active projects in your account",
+                  "icon": "Folder",
+                  "variant": "default"
+                }
+              },
+              {
+                "type": "card",
+                "props": {
+                  "title": "Recent Updates",
+                  "value": "0",
+                  "description": "Project updates this week",
+                  "icon": "ClipboardList",
+                  "variant": "secondary"
+                }
+              },
+              {
+                "type": "card",
+                "props": {
+                  "title": "Team Members",
+                  "value": "1",
+                  "description": "Active team members",
+                  "icon": "Users",
+                  "variant": "outline"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "className": "grid grid-cols-1 lg:grid-cols-2 gap-6",
+            "children": [
+              {
+                "type": "projectList",
+                "props": {
+                  "dataUrl": "/api/projects",
+                  "limit": 3,
+                  "showActions": true,
+                  "className": "bg-card rounded-lg border"
+                }
+              },
+              {
+                "type": "projectUpdates",
+                "props": {
+                  "dataUrl": "/api/projects/1c405baa-9c0d-4739-8278-8dbfe7455446/updates",
+                  "limit": 5,
+                  "showActions": true,
+                  "className": "bg-card rounded-lg border"
+                }
+              }
+            ]
+          },
+              {
+                "type": "chart",
+                "props": {
+                  "type": "bar",
+                  "title": "Project Progress Overview",
+                  "dataUrl": "/api/analytics",
+                  "className": "bg-card rounded-lg border p-4"
+                }
+              }
+        ]
+      }
+    }
+  },
+  "theme": {
+    "variant": "modern",
+    "primaryColor": "#3b82f6"
+  },
+  "metadata": {
+    "title": "Project Management Dashboard",
+    "description": "Real-time project management dashboard with backend integration",
+    "version": "1.0.0"
+  }
+}

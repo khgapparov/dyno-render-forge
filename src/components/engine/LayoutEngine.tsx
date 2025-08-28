@@ -3,6 +3,8 @@ import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
 import { Card } from './Card';
 import { Chart } from './Chart';
+import { ProjectList } from './ProjectList';
+import { ProjectUpdates } from './ProjectUpdates';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { AlertCircle, RefreshCw } from 'lucide-react';
@@ -12,7 +14,7 @@ import { cn } from '@/lib/utils';
  * Component type definitions for the dynamic engine
  */
 export interface ComponentConfig {
-  type: 'navbar' | 'sidebar' | 'card' | 'chart' | 'page' | 'container';
+  type: 'navbar' | 'sidebar' | 'card' | 'chart' | 'page' | 'container' | 'projectList' | 'projectUpdates';
   props?: Record<string, any>;
   children?: ComponentConfig[];
   id?: string;
@@ -65,6 +67,8 @@ export const LayoutEngine = ({
     sidebar: Sidebar,
     card: Card,
     chart: Chart,
+    projectList: ProjectList,
+    projectUpdates: ProjectUpdates,
     page: ({ children, className, ...props }: any) => (
       <div className={cn("flex-1 min-h-0", className)} {...props}>
         {children}
