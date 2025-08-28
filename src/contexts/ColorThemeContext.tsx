@@ -49,13 +49,13 @@ const defaultPalettes: ColorPalette[] = [
     }
   },
   {
-    id: 'sunset',
-    name: 'Sunset Orange',
+    id: 'coral',
+    name: 'Coral Pink',
     colors: {
-      primary: '25 95% 53%',
-      primaryGlow: '25 100% 65%',
-      accent: '31 81% 56%',
-      surface: '25 20% 98%'
+      primary: '351 83% 67%',
+      primaryGlow: '351 90% 78%',
+      accent: '14 91% 71%',
+      surface: '351 20% 98%'
     }
   }
 ];
